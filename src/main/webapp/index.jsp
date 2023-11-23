@@ -44,6 +44,7 @@ a:hover {
 <h1>${msg}</h1>
 <a href="Managementlogin.jsp">Login as Manangement</a>
 <a href="playerlogin.jsp">Login as Player</a>
+<a href="teamlogin.jsp">Login as Team</a>
 <body>
 
 </body>

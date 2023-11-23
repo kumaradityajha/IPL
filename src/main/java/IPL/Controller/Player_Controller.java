@@ -45,7 +45,7 @@ public class Player_Controller
 	  //@ResponseBody
 	  public ModelAndView playerlogin(@RequestParam String username,@RequestParam String password , HttpSession httpSession)
 	  {
-		 Player player = playerDAO.playerLogin(username, password);
+		 Player player = playerDAO.playerLogin(username);
 		
 		 
 		 ModelAndView modelAndView =new ModelAndView();

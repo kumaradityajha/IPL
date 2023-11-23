@@ -2,7 +2,6 @@ package IPL.DAO;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,28 +9,30 @@ import javax.persistence.EntityTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import IPL.DTO.Management;
 import IPL.DTO.Player;
-
-
+import IPL.DTO.Team;
 
 @Component
-public class PlayerDAO
+public class TeamDAO
 {
 	@Autowired
 	EntityManagerFactory entityManagerFactory;
-	public void playerSignup(Player player) 
+	
+	public void teamSignup(Team team) 
 	{
 		EntityManager em = entityManagerFactory.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		
 		et.begin();
-		em.persist(player);
+		em.persist(team);
 		et.commit();
 		
+		
+	
+	
 	}
-
-	public Player playerLogin(String username )
+	
+	public Team teamLogin(String username)
 	{
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
@@ -39,7 +40,7 @@ public class PlayerDAO
 		
 		//List<Management> list = query.getResultList();
 		
-		List<Player> list = entityManager.createQuery("select x from Player x where username=?1").setParameter(1,username).getResultList();
+		List<Team> list = entityManager.createQuery("select x from Team x where username=?1").setParameter(1,username).getResultList();
 		
 		if(list.isEmpty())
 		{
@@ -51,16 +52,8 @@ public class PlayerDAO
 		}
 		
 	}
-	
-	public void playerUpdate(Player player)
-	{
 
-		EntityManager em = entityManagerFactory.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		
-		et.begin();
-		em.merge(player);
-		et.commit();
-		
-	}
+
+	
+
 }
