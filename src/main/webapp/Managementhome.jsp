@@ -22,7 +22,7 @@ body {
 h1 {
   text-align: center;
   font-size: 48px;
-  color: #fff;
+  color: #11a7d9;
   font-weight: bold;
   margin-top: 50px;
 }
@@ -30,16 +30,23 @@ h1 {
 p {
   text-align: center;
   font-size: 24px;
-  color: #fff;
+  color: #11a7d9;
   margin-top: 20px;
 }
 
 </style>
 </head>
-<h1>${msg}</h1>
-<h1>Welcome To Management Home</h1>
+
 
 <body>
 
+
+
+
+
+<h1>${msg}</h1>
+<h1>Welcome To Management Home</h1>
+
+<a href="viewallteams"><button>View Teams</button></a>
 </body>
 </html>

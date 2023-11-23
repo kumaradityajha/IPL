@@ -54,23 +54,23 @@ public class Team_Controller
 			 modelAndView.setViewName("teamlogin.jsp");
 			 
 			 
-		 }
-		 else if (team.isStatus()==false)
-		 {
-			 modelAndView.addObject("msg","Inactive Account");
-			 modelAndView.setViewName("teamlogin.jsp");
-			
-		}
-		 else
-		 {
+		 }else{
 			 httpSession.setAttribute("team",team); // here it is used to take the current user info --- to edit purpose or to update purpose 
 			 if(team.getPassword().equals(password))
 			 {
+				 
+				 if (team.isStatus()) {
+				 httpSession.setAttribute("team", team); // here i am setting the data by using session tracking for future use
 				 modelAndView.addObject("msg","Team Login Succesfully");
-				 modelAndView.setViewName("teamhome.jsp"); 
-			 }
-			 else
-			 {
+				 modelAndView.setViewName("teamhome.jsp");
+					 
+					
+				} else {
+					 modelAndView.addObject("msg","Wait For Management Approval");
+					 modelAndView.setViewName("Managementhome.jsp");
+					 
+				}
+			 }else{
 				 modelAndView.addObject("msg","Entered Invalid Password");
 				 modelAndView.setViewName("teamlogin.jsp");  
 			 }
