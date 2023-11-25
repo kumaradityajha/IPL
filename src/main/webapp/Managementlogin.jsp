@@ -64,10 +64,10 @@ button:hover {
 
 <form action="managementlogin">
 
-Username: <input type="text" name="username" placeholder="Emter Your Username">
+Username: <input type="text" name="username" placeholder="Enter Your Username">
 <br>
 <br>
-Password: <input type="password" name="password" placeholder="Emter Your Password">
+Password: <input type="password" name="password" placeholder="Enter Your Password">
 <br>
 <br>
 <button>Submit</button>   <button type="reset">Cancel</button>

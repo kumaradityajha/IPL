@@ -34,7 +34,7 @@ public class ManagementDAO
 		
 	}
 	
-	public Management managementLogin(String username , String password)
+	public Management managementLogin(String username)
 	{
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		

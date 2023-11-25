@@ -16,7 +16,9 @@ import IPL.DTO.Team;
 public class TeamDAO
 {
 	@Autowired
-	EntityManagerFactory entityManagerFactory;
+	EntityManagerFactory entityManagerFactory;	
+	
+	//EntityManager em = entityManagerFactory.createEntityManager();
 	
 	public void teamSignup(Team team) 
 	{
@@ -34,13 +36,15 @@ public class TeamDAO
 	
 	public Team teamLogin(String username)
 	{
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		//EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		//Query query = entityManager.createQuery("select x from Management x where username=?1").setParameter(1,username);
 		
 		//List<Management> list = query.getResultList();
 		
-		List<Team> list = entityManager.createQuery("select x from Team x where username=?1").setParameter(1,username).getResultList();
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		List<Team> list = em.createQuery("select x from Team x where username=?1").setParameter(1,username).getResultList();
 		
 		if(list.isEmpty())
 		{
@@ -54,6 +58,14 @@ public class TeamDAO
 	}
 
 
+	public List<Team> viewAllTeam()
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		List<Team> list  = em.createQuery("select x from Team x").getResultList();
+		
+		return list;
+		
+	}
 	
 
 }

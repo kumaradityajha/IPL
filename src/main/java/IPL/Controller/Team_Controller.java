@@ -1,5 +1,7 @@
 package IPL.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,4 +80,29 @@ public class Team_Controller
 		 
 		 return modelAndView;
 	  }
+	
+	@RequestMapping("viewallteams")
+	public ModelAndView viewAllTeam()
+	{
+		
+	List<Team> teams  =	teamDAO.viewAllTeam();
+	
+	 ModelAndView modelAndView = new ModelAndView();
+	
+	if(teams.isEmpty())
+	{
+		modelAndView.addObject("msg","No Teams Are Avaliable");
+		modelAndView.setViewName("Managementhome.jsp");
+	}
+	else 
+	{
+		modelAndView.addObject("teams",teams);
+		modelAndView.setViewName("viewallteams.jsp");
+		
+	}
+	
+	return modelAndView;
+		
+		
+	}
 }
