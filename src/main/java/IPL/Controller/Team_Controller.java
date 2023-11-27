@@ -106,12 +106,5 @@ public class Team_Controller
 		
 	}
 	
-	@RequestMapping("viewplayers")
-	public void viewPlayers(@RequestParam ("id") int tid)
-	{
 	
-		
-		
-		
-	}
 }
