@@ -1,9 +1,12 @@
 package IPL.DTO;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
@@ -24,6 +27,10 @@ public class Team
 	boolean status;
 	
 	double wallet;
+
+	@OneToMany
+	
+	List<Player> list ;
 
 	public int getTid() {
 		return tid;
@@ -72,7 +79,14 @@ public class Team
 	public void setWallet(double wallet) {
 		this.wallet = wallet;
 	}
-	
+
+	public List<Player> getList() {
+		return list;
+	}
+
+	public void setList(List<Player> list) {
+		this.list = list;
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 package IPL.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import IPL.DAO.PlayerDAO;
+import IPL.DAO.TeamDAO;
 import IPL.DTO.Management;
 import IPL.DTO.Player;
+import IPL.DTO.Team;
 
 @RestController
 public class Player_Controller 
@@ -22,6 +26,9 @@ public class Player_Controller
 	
 	@Autowired
 	PlayerDAO playerDAO;
+	
+	@Autowired
+	TeamDAO teamDAO;
 	
 	
 	@RequestMapping("playersignup")
@@ -103,5 +110,33 @@ public class Player_Controller
 		
 		return modelAndView;
 	}
+	 
+	 @RequestMapping("viewplayers")
+		public void viewPlayers(@RequestParam ("id") int tid)
+		{
+		
+			 Team team = teamDAO.viewPlayersOfRespectiveTeam(tid);
+			 
+			 List<Player> players = team.getList();
+			 
+			 ModelAndView modelAndView = new ModelAndView();
+			 
+			 if (players.isEmpty())
+			 {
+				 
+				modelAndView.addObject("msg","No Players Are Available Inside Team");
+				modelAndView.addObject("Teamname", team.getTeamname());
+				modelAndView.setViewName("viewteamplayers.jsp");
+			}
+			 else
+			 {
+				 modelAndView.addObject("players",players);
+					modelAndView.addObject("Teamname", team.getTeamname());
+					modelAndView.setViewName("viewteamplayers.jsp");
+				
+			}
+			
+			
+		}
 	 
 }

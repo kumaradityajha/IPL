@@ -67,5 +67,14 @@ public class TeamDAO
 		
 	}
 	
+	public Team viewPlayersOfRespectiveTeam(int tid) 
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		Team team  = em.find(Team.class, tid);
+		
+		return team;
+		
+	}
 
 }
