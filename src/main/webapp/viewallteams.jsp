@@ -31,14 +31,14 @@
 <special:forEach var="team" items="${teams}">
 
 <tr>
-<th>${team.getTid()}</th>
-<th>${team.getTeamname()}</th>
-<th>${team.getUsername()}</th>
-<th>${team.getWallet()}</th>
-<th>${team.isStatus()}</th>
-<th><a href="viewplayers?id=${getTid()}"><button>View Players</button></a></th>
-<th>Change Status</th>
-<th>Add Amount</th>
+<td>${team.getTid()}</td>
+<td>${team.getTeamname()}</td>
+<td>${team.getUsername()}</td>
+<td>${team.getWallet()}</td>
+<td>${team.isStatus()}</td>
+<td><a href="viewplayers?id=${team.getTid()}"><button>View Players</button></a></td>
+<td><a href="changestatus?id=${team.getTid()}"><button>Change Status</button></a></td>
+<td>Add Amount</td>
 
 </tr>
 

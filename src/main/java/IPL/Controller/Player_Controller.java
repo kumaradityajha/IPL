@@ -112,7 +112,7 @@ public class Player_Controller
 	}
 	 
 	 @RequestMapping("viewplayers")
-		public void viewPlayers(@RequestParam ("id") int tid)
+		public ModelAndView viewPlayers(@RequestParam ("id") int tid)
 		{
 		
 			 Team team = teamDAO.viewPlayersOfRespectiveTeam(tid);
@@ -136,7 +136,7 @@ public class Player_Controller
 				
 			}
 			
-			
+			return modelAndView;
 		}
 	 
 }

@@ -76,5 +76,28 @@ public class TeamDAO
 		return team;
 		
 	}
+	
+	public Team changeStatus(int tid)
+	{
+     
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		Team team  = em.find(Team.class, tid);
+		
+		return team;
+		
+	}
+	
+	public void update(Team team)
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		et.begin();
+		em.merge(team);
+		et.commit();
+		
+		
+	}
 
 }
