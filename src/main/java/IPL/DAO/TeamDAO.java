@@ -99,5 +99,16 @@ public class TeamDAO
 		
 		
 	}
+	
+	public Team addAmountForTeam(int id)
+	{
+       EntityManager em = entityManagerFactory.createEntityManager();
+		
+		Team team  = em.find(Team.class, id);
+		
+		return team;
+		
+		
+	}
 
 }

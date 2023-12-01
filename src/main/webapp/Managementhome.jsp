@@ -48,5 +48,6 @@ p {
 <h1>Welcome To Management Home</h1>
 
 <a href="viewallteams"><button>View Teams</button></a>
+<a href="viewallplayers"><button>View Players</button></a>
 </body>
 </html>

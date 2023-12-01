@@ -115,6 +115,7 @@ public class Team_Controller
 		{
 			team.setStatus(false);
 			
+			
 		}
 		else
 			team.setStatus(true);
@@ -125,9 +126,27 @@ public class Team_Controller
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("msg",team.getTeamname() + "Team Status Got Updated");
+		//modelAndView.setViewName("Managementhome.jsp");
+		
+		return viewAllTeam();
+		
+	}
+	
+	@RequestMapping("addamount")
+	public ModelAndView addAmountForTeams(@RequestParam double amount , int id)
+	{
+		Team team = teamDAO.addAmountForTeam(id);
+		
+	    team.setWallet(team.getWallet()+amount);	
+	    
+	    teamDAO.update(team);
+		
+	    ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("msg","Amount has been Added By Management Succesfully");
 		modelAndView.setViewName("Managementhome.jsp");
 		
-		return modelAndView;
+		return viewAllTeam();
+		
 		
 	}
 }

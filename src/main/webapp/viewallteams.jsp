@@ -38,7 +38,8 @@
 <td>${team.isStatus()}</td>
 <td><a href="viewplayers?id=${team.getTid()}"><button>View Players</button></a></td>
 <td><a href="changestatus?id=${team.getTid()}"><button>Change Status</button></a></td>
-<td>Add Amount</td>
+<td><a href="addamount.jsp?id=${team.getTid()}"><button>Add Amount</button></a></td>
+
 
 </tr>
 

@@ -62,5 +62,30 @@ public class PlayerDAO
 		em.merge(player);
 		et.commit();
 		
+
+	}
+	
+	public List<Player> viewAllPlayersForAuction() 
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		//EntityTransaction et = em.getTransaction();
+		
+	    List<Player> list =	em.createQuery("select x from Player x").getResultList();
+	 
+	    return list;
+	    
+	    
+		
+		
+	}
+	
+	public Player changePlayerStatus(int id)
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		Player player = em.find(Player.class, id);
+		
+		return player;
+		
 	}
 }

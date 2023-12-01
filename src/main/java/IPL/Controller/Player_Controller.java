@@ -139,4 +139,59 @@ public class Player_Controller
 			return modelAndView;
 		}
 	 
+	 @RequestMapping("viewallplayers")
+	 public ModelAndView viewAllPlayersForAuction()
+	 {
+		 
+		 List<Player> players = playerDAO.viewAllPlayersForAuction();
+		 
+		 ModelAndView modelAndView = new ModelAndView();
+		 
+		 if (players.isEmpty()) 
+		 {
+			 modelAndView.addObject("msg","No Players Are Available For Auction");
+			 modelAndView.setViewName("Managementhome.jsp");
+			 
+			
+		}
+		 else 
+		 {
+			modelAndView.addObject("players",players);
+			modelAndView.setViewName("viewallplayers.jsp");
+			
+		}
+		 return modelAndView;
+		
+		 
+		 
+		
+	}
+	 
+	 @RequestMapping("changeplayerstatus")
+	 public ModelAndView changePlayerStatus(@RequestParam int id)
+	 {
+	     Player player = playerDAO.changePlayerStatus(id);
+	     
+	     ModelAndView modelAndView = new ModelAndView();
+	     
+	     if (player.getStatus().equals("pending"))
+	     {
+	    	player.setStatus("Available"); 
+			
+		}
+	     else 
+	     {
+	    	 
+	    	 player.setStatus("Pending");
+		}
+	     
+	     playerDAO.playerUpdate(player);
+	     List<Player> players = playerDAO.viewAllPlayersForAuction();
+	     modelAndView.addObject("players",players);
+	     modelAndView.addObject("msg",player.getName()+ "Player Status Has Been Updated");
+	     modelAndView.setViewName("viewallplayers.jsp");
+	     return modelAndView;
+		 
+		
+	}
 }
