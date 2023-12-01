@@ -11,6 +11,7 @@
 
 <h1>Welcome To Team Home</h1>
 
+<a href="viewavailableplayers"><button>Buy Players</button></a>
 
 </body>
 </html>

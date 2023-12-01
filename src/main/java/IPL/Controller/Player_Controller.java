@@ -194,4 +194,13 @@ public class Player_Controller
 		 
 		
 	}
+	 
+	 @RequestMapping("viewavailableplayers")
+	 public void viewPlayersWhoAreAllAvailableForAuction(HttpSession httpSession) 
+	 {
+		 
+		Team team = (Team) httpSession.getAttribute("team");
+		
+		
+	}
 }

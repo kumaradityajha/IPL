@@ -57,7 +57,7 @@ public class Team_Controller
 			 
 			 
 		 }else{
-			 httpSession.setAttribute("team",team); // here it is used to take the current user info --- to edit purpose or to update purpose 
+			// httpSession.setAttribute("team",team); // here it is used to take the current user info --- to edit purpose or to update purpose 
 			 if(team.getPassword().equals(password))
 			 {
 				 
