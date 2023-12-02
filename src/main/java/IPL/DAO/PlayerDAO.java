@@ -88,4 +88,29 @@ public class PlayerDAO
 		return player;
 		
 	}
+	
+	
+	public List<Player> viewAllPlayersForPurchase() 
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		//EntityTransaction et = em.getTransaction();
+		
+	    List<Player> list =	em.createQuery("select x from Player x where status='Available'",Player.class).getResultList();
+	 
+	    return list;
+	    
+	    
+		
+		
+	}
+	
+	public Player playerPurchase(int id)
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		
+		Player player = em.find(Player.class, id);
+		
+		return player;
+		
+	}
 }

@@ -196,11 +196,80 @@ public class Player_Controller
 	}
 	 
 	 @RequestMapping("viewavailableplayers")
-	 public void viewPlayersWhoAreAllAvailableForAuction(HttpSession httpSession) 
+	 public ModelAndView viewPlayersWhoAreAllAvailableForAuction() 
 	 {
+		 ModelAndView modelAndView = new ModelAndView(); 
+		 List<Player> players = playerDAO.viewAllPlayersForPurchase();
 		 
-		Team team = (Team) httpSession.getAttribute("team");
-		
+		 if (players.isEmpty()) {
+
+			 modelAndView.addObject("msg", "No Player are Avilable");
+			 modelAndView.setViewName("teamhome.jsp");
+			
+		} else {
+			
+			modelAndView.addObject("players", players);
+			 modelAndView.setViewName("buyplayer.jsp");
+
+		}
+		 
+		 return modelAndView;
+ 	
 		
 	}
+	 
+	 
+	 @RequestMapping("buyplayer")
+	 public ModelAndView buyPlayer(@RequestParam ("id") int id, HttpSession httpSession) {
+		
+		 ModelAndView modelAndView = new ModelAndView(); 
+		 Player player = playerDAO.playerPurchase(id);
+		 
+		 
+		Team team=(Team) httpSession.getAttribute("team");
+		
+		double teamWallet = team.getWallet();
+		
+		double playerWallet= player.getPrice();
+		
+		
+		if (teamWallet<playerWallet) {
+			
+			modelAndView.addObject("msg","You Do not have enough balance");
+			modelAndView.setViewName("buyplayer.jsp");
+			
+			
+		}
+		else {
+			
+			team.setWallet(teamWallet-playerWallet);
+			player.setTeam(team);
+			player.setStatus("Sold Out");
+			
+			playerDAO.playerUpdate(player);
+			teamDAO.update(team);
+			
+			
+			
+
+			modelAndView.addObject("msg","You Successfully bought "+player.getName());
+			modelAndView.setViewName("buyplayer.jsp");
+			
+			
+			
+			
+		}
+		
+		return modelAndView;
+		
+		 
+		 
+		 
+		 
+		 
+	 }
+	 
+	 
+	 
+	 
 }
