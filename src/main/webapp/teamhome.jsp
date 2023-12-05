@@ -12,6 +12,13 @@
 <h1>Welcome To Team Home</h1>
 
 <a href="viewavailableplayers"><button>View Avilable Player</button></a>
+<br>
+<br>
+<a href="viewteams"><button>View Team</button></a>
+<br>
+<br>
+<a href="viewteambyname"><button>View Team By Name</button></a>
+
 
 </body>
 </html>

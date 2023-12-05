@@ -110,5 +110,15 @@ public class TeamDAO
 		
 		
 	}
+	
+	
+	public List<Team> getAllTeam()
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		List<Team> list  = em.createQuery("select x from Team x").getResultList();
+		
+		return list;
+		
+	}
 
 }

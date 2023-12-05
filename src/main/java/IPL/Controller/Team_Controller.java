@@ -149,4 +149,74 @@ public class Team_Controller
 		
 		
 	}
+	
+	@RequestMapping("viewteams")
+	public ModelAndView viewPlayersInsideTeam(HttpSession httpSession)
+	{
+		 Team team = (Team) httpSession.getAttribute("team");
+		 
+		List<Player> players = team.getList();  // here we are going to get the information of players who has been taken by a team
+		
+		 ModelAndView modelAndView = new ModelAndView();
+		
+		if (players.isEmpty())
+		{
+		
+			modelAndView.addObject("teamname",team.getTeamname());
+			modelAndView.addObject("msg","No Players Has Been Bought");
+			modelAndView.setViewName("viewmyteam.jsp");
+			
+		} 
+		else
+		{
+			modelAndView.addObject("teamname",team.getTeamname());
+			modelAndView.addObject("players",players);
+			modelAndView.setViewName("viewmyteam.jsp");
+			
+		}
+		
+		return modelAndView;
+		 
+		
+	}
+	
+	@RequestMapping("teamhomedummy")
+	public ModelAndView teamHomeDummy(HttpSession httpSession) // this method is used to redirect for same page with object
+	{
+		Team team = (Team) httpSession.getAttribute("team");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//modelAndView.addObject("teamname",team.getTeamname());
+		
+		modelAndView.setViewName("teamhome.jsp");
+		
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping("viewteambyname")
+	public ModelAndView viewTeamByName()
+	{
+	
+		List<Team> teams = teamDAO.getAllTeam();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("teams",teams);
+		
+		modelAndView.setViewName("viewteambyname.jsp");
+		
+		return modelAndView;
+		
+		
+		
+	}
+	
+	@RequestMapping("fetchusingteamname")
+	public void fetchUsingTeamName()
+	{
+		
+		
+	}
 }
