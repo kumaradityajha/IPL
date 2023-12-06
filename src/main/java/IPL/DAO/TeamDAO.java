@@ -120,5 +120,16 @@ public class TeamDAO
 		return list;
 		
 	}
+	
+	public List<Team> getAllTeamByName(String teamname)
+	{
+		EntityManager em = entityManagerFactory.createEntityManager();
+		List<Team> list  = em.createQuery("select x from Team x where teamname=?1").setParameter(1, teamname).getResultList();
+		
+		return list;
+		
+		
+		
+	}
 
 }

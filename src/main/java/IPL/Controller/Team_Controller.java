@@ -62,7 +62,9 @@ public class Team_Controller
 			 {
 				 
 				 if (team.isStatus()) {
-				 httpSession.setAttribute("team", team); // here i am setting the data by using session tracking for future use
+					 
+				 httpSession.setAttribute("teams", team); // here i am setting the data by using session tracking for future use
+				
 				 modelAndView.addObject("msg","Team Login Succesfully");
 				 modelAndView.setViewName("teamhome.jsp");
 					 
@@ -153,7 +155,7 @@ public class Team_Controller
 	@RequestMapping("viewteams")
 	public ModelAndView viewPlayersInsideTeam(HttpSession httpSession)
 	{
-		 Team team = (Team) httpSession.getAttribute("team");
+		 Team team = (Team) httpSession.getAttribute("teams");
 		 
 		List<Player> players = team.getList();  // here we are going to get the information of players who has been taken by a team
 		
@@ -214,9 +216,22 @@ public class Team_Controller
 	}
 	
 	@RequestMapping("fetchusingteamname")
-	public void fetchUsingTeamName()
+	public ModelAndView fetchUsingTeamName(@RequestParam String teamname)
 	{
+	
+		List<Team> list = teamDAO.getAllTeamByName(teamname);
 		
+		Team team = list.get(0);
+		
+		List<Player> players = team.getList();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("players",players);
+		
+		modelAndView.setViewName("viewmyteam.jsp");
+		
+		return modelAndView;
 		
 	}
 }

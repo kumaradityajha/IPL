@@ -168,7 +168,7 @@ public class Player_Controller
 	}
 	 
 	 @RequestMapping("changeplayerstatus")
-	 public ModelAndView changePlayerStatus(@RequestParam int id)
+	 public ModelAndView changePlayerStatus(@RequestParam ("id")  int id)
 	 {
 	     Player player = playerDAO.changePlayerStatus(id);
 	     
@@ -179,17 +179,22 @@ public class Player_Controller
 	    	player.setStatus("Available"); 
 			
 		}
-	     else 
-	     {
-	    	 
-	    	 player.setStatus("Pending");
-		}
+	     else if(player.getStatus().equals("Available"))
 	     
+	     {
+	    	 player.setStatus("Pending");
+		
+	     }
 	     playerDAO.playerUpdate(player);
+	     
 	     List<Player> players = playerDAO.viewAllPlayersForAuction();
+	     
+	     
 	     modelAndView.addObject("players",players);
 	     modelAndView.addObject("msg",player.getName()+ "Player Status Has Been Updated");
 	     modelAndView.setViewName("viewallplayers.jsp");
+	     
+	     
 	     return modelAndView;
 		 
 		

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="special" %> 
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,9 @@
 <body>
 <h1>Welcome To View All Players </h1>
 <h1>${msg}</h1>
-<table border="1">
+
+
+<table border="1" cellpadding="5" cellspacing="5">
 
 <tr>
 
